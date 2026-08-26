@@ -6,11 +6,14 @@ def nto(n):
         if (n % i == 0): return False
     return True
 
+def tongchuso(n):
+    return sum(int(chieu) for chieu in str(abs(n)))
+
 t = int(input())
 for i in range(t):
     a, b = map(int, input().split())
     g = math.gcd(a, b)
-    if nto(g):
+    if nto(tongchuso(g)):
         print('YES')
     else:
         print('NO')

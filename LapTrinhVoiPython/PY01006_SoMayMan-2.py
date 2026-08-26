@@ -1,6 +1,6 @@
 def check(s):
     for i in range (len(s)):
-        if s[i] != 4 and s[i] != 7: return False
+        if s[i] != '4' and s[i] != '7': return False
     return True
 
 t = int(input())

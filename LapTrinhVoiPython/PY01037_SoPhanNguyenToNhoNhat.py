@@ -1,35 +1,26 @@
-from bisect import bisect_left
 import sys
 
-primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
-limit = 20000000
-a = []
+a = (
+    1, 2, 4, 6, 12, 24, 36, 48, 60, 120, 180, 240, 360, 720, 840,
+    1260, 1680, 2520, 5040, 7560, 10080, 15120, 20160, 25200, 27720,
+    45360, 50400, 55440, 83160, 110880, 166320, 221760, 277200,
+    332640, 498960, 554400, 665280, 720720, 1081080, 1441440,
+    2162160, 2882880, 3603600, 4324320, 6486480, 7207200,
+    8648640, 10810800
+)
 
-def dfs(i, last, cur, d):
-    a.append((cur, d))
-    if i == len(primes):
-        return
-    x = cur
-    for e in range(1, last + 1):
-        x *= primes[i]
-        if x > limit:
-            break
-        dfs(i + 1, e, x, d * (e + 1))
+rd = sys.stdin.buffer.readline
+wr = sys.stdout.write
 
-dfs(0, 60, 1, 1)
+t = int(rd())
 
-a.sort()
-
-b = []
-mx = 0
-for n, d in a:
-    if d > mx:
-        mx = d
-        b.append(n)
-
-input = sys.stdin.readline
-
-t = int(input())
 for _ in range(t):
-    x = int(input())
-    print(b[bisect_left(b, x)])
+    x = int(rd())
+    l, r = 0, 47
+    while l < r:
+        m = (l + r) >> 1
+        if a[m] < x:
+            l = m + 1
+        else:
+            r = m
+    wr(str(a[l]) + "\n")
