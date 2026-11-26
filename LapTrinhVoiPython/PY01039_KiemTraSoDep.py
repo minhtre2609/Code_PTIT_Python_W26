@@ -1,9 +1,13 @@
 t = int(input())
+#ord: chuyen ky tu sang ASCII
+#chr: chuyen tu ASCII sang ky tu
 for _ in range(t):
-    s = input().strip()
-    if len(set(s)) != 2:
-        print("NO")
-    elif s[0::2] == s[0] * len(s[0::2]) and s[1::2] == s[1] * len(s[1::2]):
-        print("YES")
-    else:
-        print("NO")
+    s1 = input()
+    s2 = s1[::-1]
+    ok = True
+    for i in range(1, len(s1)):
+        if abs(ord(s1[i]) - ord(s1[i-1])) != abs(ord(s2[i]) - ord(s2[i-1])):
+            ok = False
+            break
+    if ok: print("YES")
+    else: print("NO")
